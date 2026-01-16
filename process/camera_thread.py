@@ -146,7 +146,7 @@ class CameraThread(QThread):
             emb = self.embedder.feature(aligned)
             flatten = emb.flatten()  # Flatten để đảm bảo là vector 1 chiều
             user_id, score = self.db.search(flatten)
-            if user_id != "unknown":
+            if user_id != "Unknown":
                 if user_id != self.last_id:
                     try:
                         self.notification.emit(f"Xin chào {user_id}")

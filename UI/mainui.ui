@@ -9,14 +9,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>800</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>800</width>
-    <height>800</height>
+    <width>1280</width>
+    <height>720</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -25,16 +25,16 @@
   <widget class="QGroupBox" name="notegroup">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>560</y>
-     <width>600</width>
-     <height>200</height>
+     <x>780</x>
+     <y>200</y>
+     <width>480</width>
+     <height>500</height>
     </rect>
    </property>
    <property name="maximumSize">
     <size>
-     <width>600</width>
-     <height>200</height>
+     <width>480</width>
+     <height>500</height>
     </size>
    </property>
    <property name="title">
@@ -43,7 +43,7 @@
    <widget class="QLabel" name="Notelable">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>20</x>
       <y>20</y>
       <width>200</width>
       <height>20</height>
@@ -63,16 +63,16 @@
    <widget class="QTextBrowser" name="Notext">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>20</x>
       <y>40</y>
-      <width>500</width>
-      <height>140</height>
+      <width>440</width>
+      <height>440</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
       <width>500</width>
-      <height>200</height>
+      <height>1000</height>
      </size>
     </property>
    </widget>
@@ -80,58 +80,67 @@
   <widget class="QGroupBox" name="Cameragroup">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>20</y>
-     <width>680</width>
-     <height>520</height>
+     <x>20</x>
+     <y>200</y>
+     <width>740</width>
+     <height>500</height>
     </rect>
    </property>
    <property name="maximumSize">
     <size>
-     <width>680</width>
-     <height>520</height>
+     <width>740</width>
+     <height>500</height>
     </size>
    </property>
    <property name="title">
     <string/>
    </property>
-   <widget class="QLabel" name="label">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>230</y>
-      <width>600</width>
-      <height>50</height>
+      <x>0</x>
+      <y>0</y>
+      <width>751</width>
+      <height>521</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Camera chưa chạy</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
+    <layout class="QVBoxLayout" name="camera_layout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="video_label">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Camera chưa chạy</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="Buttongroup">
+  <widget class="QGroupBox" name="ControllGroup">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>560</y>
-     <width>140</width>
-     <height>200</height>
+     <x>780</x>
+     <y>20</y>
+     <width>230</width>
+     <height>160</height>
     </rect>
    </property>
    <property name="maximumSize">
     <size>
-     <width>140</width>
-     <height>200</height>
+     <width>1000</width>
+     <height>160</height>
     </size>
    </property>
    <property name="title">
@@ -141,16 +150,23 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>40</y>
-      <width>100</width>
-      <height>40</height>
+      <y>20</y>
+      <width>190</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="maximumSize">
      <size>
-      <width>100</width>
-      <height>40</height>
+      <width>190</width>
+      <height>50</height>
      </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>START</string>
@@ -160,17 +176,290 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>120</y>
-      <width>100</width>
-      <height>40</height>
+      <y>90</y>
+      <width>190</width>
+      <height>50</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>STOP</string>
     </property>
    </widget>
   </widget>
+  <widget class="QGroupBox" name="ProcessBarGroup">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>740</width>
+     <height>160</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>30</y>
+      <width>741</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="process_layout">
+     <property name="spacing">
+      <number>50</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="OpenCam">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    background-color: #d1d1d1; /* Màu xám */
+    border: 2px solid #a1a1a1;
+    border-radius: 5px; /* Bo góc nhẹ */
+    color: #555555;
+    font-weight: bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>OPEN CAMERA</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="Detect">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    background-color: #d1d1d1; /* Màu xám */
+    border: 2px solid #a1a1a1;
+    border-radius: 5px; /* Bo góc nhẹ */
+    color: #555555;
+    font-weight: bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>DETECT</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="Embedding">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    background-color: #d1d1d1; /* Màu xám */
+    border: 2px solid #a1a1a1;
+    border-radius: 5px; /* Bo góc nhẹ */
+    color: #555555;
+    font-weight: bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>EMBEDDING</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="Query">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    background-color: #d1d1d1; /* Màu xám */
+    border: 2px solid #a1a1a1;
+    border-radius: 5px; /* Bo góc nhẹ */
+    color: #555555;
+    font-weight: bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>QUERY DATABASE</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="Draw">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+    background-color: #d1d1d1; /* Màu xám */
+    border: 2px solid #a1a1a1;
+    border-radius: 5px; /* Bo góc nhẹ */
+    color: #555555;
+    font-weight: bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>DRAW RESULT</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="SelectGroup">
+   <property name="geometry">
+    <rect>
+     <x>1030</x>
+     <y>20</y>
+     <width>230</width>
+     <height>160</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QRadioButton" name="radio2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>190</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>real-time</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="radio1">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>190</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>each process</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>
