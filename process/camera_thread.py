@@ -47,6 +47,7 @@ class CameraThread(QThread):
         self.db = db
 
         self.mode = mode
+        self.current_frame = None
 
         self.detect_interval = 13
         self.running = True
@@ -64,65 +65,67 @@ class CameraThread(QThread):
             ret, frame = self.cap.read()
             if not ret:break
             if self.mode == "REAL_TIME" :
-                self.real_time(frame)
+                self.frame_id += 1
+
+                if self.frame_id % self.detect_interval == 0:
+                    try:
+                        self.last_results = self.process(frame)
+                    except:
+                        print("An error in processing frame")
+                if self.frame_id == 60:
+                    self.frame_id = 0
+                self.update_fps()
+                try:
+                    self.draw(frame)
+                    self.draw_fps(frame)
+                except:
+                    print("An error when drawing frame")
+
+                self.frame_ready.emit(frame)
             elif self.mode == "EACH":
                 self.each_process()
             if not self.running:break
-
         self.cap.release()
 
-    def real_time(self, frame):
-        self.frame_count += 1
-        if self.frame_id % self.detect_interval == 0:
-            try:
-                self.last_results = self.process(frame)
-            except:
-                print("An error in processing frame")
-        if self.frame_id == 60:
-            self.frame_id = 0
-        self.update_fps()
-        try:
-            self.draw(frame)
-            self.draw_fps(frame)
-        except:
-            print("An error when drawing frame")
-
     def each_process(self):
-        # --- STEP 0: Get Image ---
-        if not self.wait_for_user(0): return
-        self.notification.emit(f"Bắt đầu bước lấy ảnh")
-        frame = self.capture_image()  # Hàm lấy ảnh từ ESP32
-        self.notification.emit(f"Lấy ảnh thành công")
-        self.frame_ready.emit(frame)
-
-        # --- STEP 1: Detect ---
-        if not self.wait_for_user(1):return
-        self.notification.emit(f"Bắt đầu detect ảnh")
-        face_box = self.detect_face(frame)
-        self.notification.emit(f"Đã hoàn thành detect ảnh")
-
-        # --- STEP 2: Embedding ---
-        if not self.wait_for_user(2): return
-        self.notification.emit(f"Bắt đầu embedding mặt")
-        vector = self.get_embedding(face_box)
-        self.notification.emit(f"Hoàn thành embedding")
-
-        # --- STEP 3: Query Database ---
-        if not self.wait_for_user(3):return
-        self.notification.emit(f"Bắt đầu truy vấn cơ sở dữ liệu")
-        self.last_results = self.query_db(vector)
-        self.notification.emit(f"Đã hoàn thành truy vấn cơ sở dữ liệu")
-        for x1, y1, x2, y2, user_id, score in self.last_results:
-            self.notification.emit(f"user_id: {user_id}")
-
-        # --- STEP 4: Draw Result ---
-        if not self.wait_for_user(4):return
-        self.notification.emit(f"Bắt dầu vẽ kết quả")
         try:
-            self.draw(frame)
-        except:
-            print("An error when draw info")
-        self.frame_ready.emit(f"Đã hoàn tất quá trình")
+            # --- STEP 0: Get Image ---
+            if not self.wait_for_user(0): return
+            self.notification.emit(f"Bắt đầu bước lấy ảnh")
+            frame = self.capture_image()  # Hàm lấy ảnh từ ESP32
+            self.current_frame = frame
+            self.notification.emit(f"Lấy ảnh thành công")
+            self.frame_ready.emit(frame)
+
+            # --- STEP 1: Detect ---
+            if not self.wait_for_user(1):return
+            self.notification.emit(f"Bắt đầu detect ảnh")
+            face_box = self.detect_face(frame)
+            self.notification.emit(f"Đã hoàn thành detect ảnh")
+
+            # --- STEP 2: Embedding ---
+            if not self.wait_for_user(2): return
+            self.notification.emit(f"Bắt đầu embedding mặt")
+            vector = self.get_embedding(face_box)
+            self.notification.emit(f"Hoàn thành embedding")
+
+            # --- STEP 3: Query Database ---
+            if not self.wait_for_user(3):return
+            self.notification.emit(f"Bắt đầu truy vấn cơ sở dữ liệu")
+            self.last_results = self.query_db(vector)
+            self.notification.emit(f"Đã hoàn thành truy vấn cơ sở dữ liệu")
+            for x1, y1, x2, y2, user_id, score in self.last_results:
+                self.notification.emit(f"user_id: {user_id}")
+
+            # --- STEP 4: Draw Result ---
+            if not self.wait_for_user(4):return
+            if self.running and self.current_frame is not None:
+                self.notification.emit(f"Bắt dầu vẽ kết quả")
+                final_img = self.draw_result(self.current_frame)
+                self.frame_ready.emit(final_img)
+            self.notification.emit(f"Quá trình hoàn tất")
+        except Exception as e:
+            print("Lỗi hệ thống: {str(e)}")
 
     def update_fps(self):
         self.frame_count += 1
@@ -282,3 +285,24 @@ class CameraThread(QThread):
             results.append((x1, y1, x2, y2, user_id, score))
         return results
 
+    def draw_result(self, image):
+        if image is None or len(self.last_results) == 0:
+            return image
+
+        # Tạo một bản sao độc lập để tránh xung đột vùng nhớ
+        annotated_image = image.copy()
+
+        try:
+            for x1, y1, x2, y2, user_id, score in self.last_results:
+                # Ép kiểu tọa độ về int để OpenCV không lỗi
+                p1 = (int(x1), int(y1))
+                p2 = (int(x2), int(y2))
+
+                cv2.rectangle(annotated_image, p1, p2, (0, 255, 0), 2)
+                label = f"{user_id}: {score:.2f}"
+                cv2.putText(annotated_image, label, (p1[0], p1[1] - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+            return annotated_image
+        except Exception as e:
+            print(f"Lỗi vẽ hình: {e}")
+            return image

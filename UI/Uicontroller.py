@@ -34,7 +34,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
             else:
                 mode = "REAL_TIME"
             self.log_message(new_status)
-            self.thread = CameraThread(self.db, "EACH")
+            self.thread = CameraThread(self.db, mode)
             try:
                 self.thread.notification.connect(self.log_message)
                 self.thread.step_signal.connect(self.set_progress_step)
