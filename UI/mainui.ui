@@ -51,6 +51,7 @@
     </property>
     <property name="font">
      <font>
+      <pointsize>15</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -69,9 +70,9 @@ font-weight:bold;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>40</y>
+      <y>45</y>
       <width>440</width>
-      <height>440</height>
+      <height>435</height>
      </rect>
     </property>
     <property name="maximumSize">
@@ -225,7 +226,7 @@ font-size:15
      <x>20</x>
      <y>20</y>
      <width>740</width>
-     <height>160</height>
+     <height>121</height>
     </rect>
    </property>
    <property name="title">
@@ -537,33 +538,6 @@ font-size:15
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="Nextstepbutton">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>115</y>
-      <width>100</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-background-color: #3498db;
-border-radius: 5px;
-color: #555555;
-font-weight: bold
-}</string>
-    </property>
-    <property name="text">
-     <string>NEXT STEP</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QGroupBox" name="SelectGroup">
    <property name="geometry">
@@ -622,6 +596,52 @@ font-weight: bold
      <string notr="true">buttonGroup</string>
     </attribute>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="InButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>145</y>
+     <width>360</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+border: 2px solid #8f8f91;
+border-radius: 10px;
+background-color: #3498db;
+color: white;
+font-size: 15;
+font-weight: bold
+}
+</string>
+   </property>
+   <property name="text">
+    <string>IN MODE</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="OutButton">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>145</y>
+     <width>360</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+border: 2px solid #8f8f91;
+border-radius: 10px;
+font-size: 15;
+font-weight: bold
+}
+</string>
+   </property>
+   <property name="text">
+    <string>OUT MODE</string>
+   </property>
   </widget>
  </widget>
  <resources/>
