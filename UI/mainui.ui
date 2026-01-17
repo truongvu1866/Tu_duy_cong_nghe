@@ -613,7 +613,7 @@ font-weight: bold
      </font>
     </property>
     <property name="text">
-     <string>each process</string>
+     <string>step by step</string>
     </property>
     <property name="checked">
      <bool>true</bool>

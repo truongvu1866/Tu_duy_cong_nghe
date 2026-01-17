@@ -302,7 +302,7 @@ class Ui_Form(object):
         self.Mainprocesslabel.setText(_translate("Form", "Main Process"))
         self.Nextstepbutton.setText(_translate("Form", "NEXT STEP"))
         self.radio2.setText(_translate("Form", "real-time"))
-        self.radio1.setText(_translate("Form", "each process"))
+        self.radio1.setText(_translate("Form", "step by step"))
 
 
 if __name__ == "__main__":
