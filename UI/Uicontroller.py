@@ -20,20 +20,30 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
         self.msg_signal.connect(self.log_message)
         self.startbutton.clicked.connect(self.start_camera)
         self.stopbutton.clicked.connect(self.stop_camera)
+        self.radio1.toggled.connect(self.change_mode)
+        self.radio2.toggled.connect(self.change_mode)
+        self.Nextstepbutton.clicked.connect(self.trigger_next)
 
     def start_camera(self):
         if self.thread is None:
             self.log_message("Đang khởi động hệ thống...")
             self.log_message("Đang tái cấu trúc Database, vui lòng đợi...")
             new_status = self.db.load()
+            if self.radio1.isChecked():
+                mode = "EACH"
+            else:
+                mode = "REAL_TIME"
             self.log_message(new_status)
-            self.thread = CameraThread(self.db)
+            self.thread = CameraThread(self.db, "EACH")
             try:
                 self.thread.notification.connect(self.log_message)
+                self.thread.step_signal.connect(self.set_progress_step)
             except:
                 print('Khong the ket su dung Notetext')
             self.thread.frame_ready.connect(self.update_frame)
             self.thread.start()
+
+            self.log_message(f"Hệ thống bắt đầu ở chế độ: {mode}")
 
     def stop_camera(self):
         if self.thread:
@@ -82,3 +92,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Form):
                     color: #555555;
                     border: 2px solid #a1a1a1;
                 """)
+
+    def change_mode(self):
+        if self.thread and self.thread.isRunning():
+            if self.radio1.isChecked():
+                new_mode = "EACH"
+            else :
+                new_mode = "REAL_TIME"
+
+            self.thread.setMode(new_mode)
+            self.log_message(f"Đã chuyển sang chế độ ")
+
+    def trigger_next(self):
+        if self.thread:
+            self.thread.next_step()

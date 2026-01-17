@@ -23,10 +23,13 @@ class Ui_Form(object):
         self.Notelable = QtWidgets.QLabel(parent=self.notegroup)
         self.Notelable.setGeometry(QtCore.QRect(20, 20, 200, 20))
         font = QtGui.QFont()
-        font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
         self.Notelable.setFont(font)
+        self.Notelable.setStyleSheet("QLabel{\n"
+"font-size:15;\n"
+"font-weight:bold;\n"
+"}")
         self.Notelable.setObjectName("Notelable")
         self.Notext = QtWidgets.QTextBrowser(parent=self.notegroup)
         self.Notext.setGeometry(QtCore.QRect(20, 40, 440, 440))
@@ -46,10 +49,13 @@ class Ui_Form(object):
         self.camera_layout.setObjectName("camera_layout")
         self.video_label = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         font = QtGui.QFont()
-        font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
         self.video_label.setFont(font)
+        self.video_label.setStyleSheet("QLabel{\n"
+"font-weight:bold;\n"
+"font-size:16\n"
+"}")
         self.video_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.video_label.setObjectName("video_label")
         self.camera_layout.addWidget(self.video_label)
@@ -66,6 +72,12 @@ class Ui_Form(object):
         font.setBold(True)
         font.setWeight(75)
         self.startbutton.setFont(font)
+        self.startbutton.setStyleSheet("QPushButton{\n"
+"border:2px solid #8f8f91;\n"
+"border-radius: 5px;\n"
+"font-weight:bold;\n"
+"font-size:15\n"
+"}")
         self.startbutton.setObjectName("startbutton")
         self.stopbutton = QtWidgets.QPushButton(parent=self.ControllGroup)
         self.stopbutton.setGeometry(QtCore.QRect(20, 90, 190, 50))
@@ -74,6 +86,12 @@ class Ui_Form(object):
         font.setBold(True)
         font.setWeight(75)
         self.stopbutton.setFont(font)
+        self.stopbutton.setStyleSheet("QPushButton{\n"
+"border:2px solid #8f8f91;\n"
+"border-radius: 5px;\n"
+"font-weight:bold;\n"
+"font-size:15\n"
+"}")
         self.stopbutton.setObjectName("stopbutton")
         self.ProcessBarGroup = QtWidgets.QGroupBox(parent=Form)
         self.ProcessBarGroup.setGeometry(QtCore.QRect(20, 20, 740, 160))
@@ -85,7 +103,7 @@ class Ui_Form(object):
         self.process_layout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.process_layout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
         self.process_layout.setContentsMargins(0, 0, 0, 0)
-        self.process_layout.setSpacing(50)
+        self.process_layout.setSpacing(0)
         self.process_layout.setObjectName("process_layout")
         self.OpenCam = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
         self.OpenCam.setMaximumSize(QtCore.QSize(100, 80))
@@ -104,6 +122,15 @@ class Ui_Form(object):
         self.OpenCam.setWordWrap(True)
         self.OpenCam.setObjectName("OpenCam")
         self.process_layout.addWidget(self.OpenCam)
+        self.arrow1 = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
+        self.arrow1.setMaximumSize(QtCore.QSize(40, 80))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.arrow1.setFont(font)
+        self.arrow1.setObjectName("arrow1")
+        self.process_layout.addWidget(self.arrow1)
         self.Detect = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
         self.Detect.setMaximumSize(QtCore.QSize(100, 80))
         font = QtGui.QFont()
@@ -122,6 +149,15 @@ class Ui_Form(object):
         self.Detect.setWordWrap(True)
         self.Detect.setObjectName("Detect")
         self.process_layout.addWidget(self.Detect)
+        self.arrow2 = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
+        self.arrow2.setMaximumSize(QtCore.QSize(40, 80))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.arrow2.setFont(font)
+        self.arrow2.setObjectName("arrow2")
+        self.process_layout.addWidget(self.arrow2)
         self.Embedding = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
         self.Embedding.setMaximumSize(QtCore.QSize(100, 80))
         font = QtGui.QFont()
@@ -140,6 +176,15 @@ class Ui_Form(object):
         self.Embedding.setWordWrap(True)
         self.Embedding.setObjectName("Embedding")
         self.process_layout.addWidget(self.Embedding)
+        self.arrow3 = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
+        self.arrow3.setMaximumSize(QtCore.QSize(40, 80))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.arrow3.setFont(font)
+        self.arrow3.setObjectName("arrow3")
+        self.process_layout.addWidget(self.arrow3)
         self.Query = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
         self.Query.setMaximumSize(QtCore.QSize(100, 80))
         font = QtGui.QFont()
@@ -158,6 +203,15 @@ class Ui_Form(object):
         self.Query.setWordWrap(True)
         self.Query.setObjectName("Query")
         self.process_layout.addWidget(self.Query)
+        self.arrow4 = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
+        self.arrow4.setMaximumSize(QtCore.QSize(40, 80))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.arrow4.setFont(font)
+        self.arrow4.setObjectName("arrow4")
+        self.process_layout.addWidget(self.arrow4)
         self.Draw = QtWidgets.QLabel(parent=self.horizontalLayoutWidget)
         self.Draw.setMaximumSize(QtCore.QSize(100, 80))
         font = QtGui.QFont()
@@ -176,6 +230,34 @@ class Ui_Form(object):
         self.Draw.setWordWrap(True)
         self.Draw.setObjectName("Draw")
         self.process_layout.addWidget(self.Draw)
+        self.Mainprocesslabel = QtWidgets.QLabel(parent=self.ProcessBarGroup)
+        self.Mainprocesslabel.setGeometry(QtCore.QRect(0, 0, 741, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.Mainprocesslabel.setFont(font)
+        self.Mainprocesslabel.setStyleSheet("QLabel {\n"
+"    background-color: #2ecc71; /* Màu xám */\n"
+"    border: 2px solid #a1a1a1;\n"
+"    border-radius: 5px; /* Bo góc nhẹ */\n"
+"    color: #555555;\n"
+"    font-weight: bold;\n"
+"}")
+        self.Mainprocesslabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.Mainprocesslabel.setObjectName("Mainprocesslabel")
+        self.Nextstepbutton = QtWidgets.QPushButton(parent=self.ProcessBarGroup)
+        self.Nextstepbutton.setGeometry(QtCore.QRect(630, 115, 100, 40))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.Nextstepbutton.setFont(font)
+        self.Nextstepbutton.setStyleSheet("QPushButton{\n"
+"background-color: #3498db;\n"
+"border-radius: 5px;\n"
+"color: #555555;\n"
+"font-weight: bold\n"
+"}")
+        self.Nextstepbutton.setObjectName("Nextstepbutton")
         self.SelectGroup = QtWidgets.QGroupBox(parent=Form)
         self.SelectGroup.setGeometry(QtCore.QRect(1030, 20, 230, 160))
         self.SelectGroup.setTitle("")
@@ -194,6 +276,7 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setPointSize(15)
         self.radio1.setFont(font)
+        self.radio1.setChecked(True)
         self.radio1.setObjectName("radio1")
         self.buttonGroup.addButton(self.radio1)
 
@@ -207,10 +290,26 @@ class Ui_Form(object):
         self.video_label.setText(_translate("Form", "Camera chưa chạy"))
         self.startbutton.setText(_translate("Form", "START"))
         self.stopbutton.setText(_translate("Form", "STOP"))
-        self.OpenCam.setText(_translate("Form", "OPEN CAMERA"))
+        self.OpenCam.setText(_translate("Form", "GET IMAGE"))
+        self.arrow1.setText(_translate("Form", "→"))
         self.Detect.setText(_translate("Form", "DETECT"))
+        self.arrow2.setText(_translate("Form", "→"))
         self.Embedding.setText(_translate("Form", "EMBEDDING"))
+        self.arrow3.setText(_translate("Form", "→"))
         self.Query.setText(_translate("Form", "QUERY DATABASE"))
+        self.arrow4.setText(_translate("Form", "→"))
         self.Draw.setText(_translate("Form", "DRAW RESULT"))
+        self.Mainprocesslabel.setText(_translate("Form", "Main Process"))
+        self.Nextstepbutton.setText(_translate("Form", "NEXT STEP"))
         self.radio2.setText(_translate("Form", "real-time"))
         self.radio1.setText(_translate("Form", "each process"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec())
