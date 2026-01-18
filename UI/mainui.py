@@ -23,6 +23,7 @@ class Ui_Form(object):
         self.Notelable = QtWidgets.QLabel(parent=self.notegroup)
         self.Notelable.setGeometry(QtCore.QRect(20, 20, 200, 20))
         font = QtGui.QFont()
+        font.setPointSize(15)
         font.setBold(True)
         font.setWeight(75)
         self.Notelable.setFont(font)
@@ -32,7 +33,7 @@ class Ui_Form(object):
 "}")
         self.Notelable.setObjectName("Notelable")
         self.Notext = QtWidgets.QTextBrowser(parent=self.notegroup)
-        self.Notext.setGeometry(QtCore.QRect(20, 40, 440, 440))
+        self.Notext.setGeometry(QtCore.QRect(20, 45, 440, 435))
         self.Notext.setMaximumSize(QtCore.QSize(500, 1000))
         self.Notext.setObjectName("Notext")
         self.Cameragroup = QtWidgets.QGroupBox(parent=Form)
@@ -94,7 +95,7 @@ class Ui_Form(object):
 "}")
         self.stopbutton.setObjectName("stopbutton")
         self.ProcessBarGroup = QtWidgets.QGroupBox(parent=Form)
-        self.ProcessBarGroup.setGeometry(QtCore.QRect(20, 20, 740, 160))
+        self.ProcessBarGroup.setGeometry(QtCore.QRect(20, 20, 740, 121))
         self.ProcessBarGroup.setTitle("")
         self.ProcessBarGroup.setObjectName("ProcessBarGroup")
         self.horizontalLayoutWidget = QtWidgets.QWidget(parent=self.ProcessBarGroup)
@@ -245,19 +246,6 @@ class Ui_Form(object):
 "}")
         self.Mainprocesslabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.Mainprocesslabel.setObjectName("Mainprocesslabel")
-        self.Nextstepbutton = QtWidgets.QPushButton(parent=self.ProcessBarGroup)
-        self.Nextstepbutton.setGeometry(QtCore.QRect(630, 115, 100, 40))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.Nextstepbutton.setFont(font)
-        self.Nextstepbutton.setStyleSheet("QPushButton{\n"
-"background-color: #3498db;\n"
-"border-radius: 5px;\n"
-"color: #555555;\n"
-"font-weight: bold\n"
-"}")
-        self.Nextstepbutton.setObjectName("Nextstepbutton")
         self.SelectGroup = QtWidgets.QGroupBox(parent=Form)
         self.SelectGroup.setGeometry(QtCore.QRect(1030, 20, 230, 160))
         self.SelectGroup.setTitle("")
@@ -279,6 +267,28 @@ class Ui_Form(object):
         self.radio1.setChecked(True)
         self.radio1.setObjectName("radio1")
         self.buttonGroup.addButton(self.radio1)
+        self.InButton = QtWidgets.QPushButton(parent=Form)
+        self.InButton.setGeometry(QtCore.QRect(20, 145, 360, 50))
+        self.InButton.setStyleSheet("QPushButton{\n"
+"border: 2px solid #8f8f91;\n"
+"border-radius: 10px;\n"
+"background-color: #3498db;\n"
+"color: white;\n"
+"font-size: 15;\n"
+"font-weight: bold\n"
+"}\n"
+"")
+        self.InButton.setObjectName("InButton")
+        self.OutButton = QtWidgets.QPushButton(parent=Form)
+        self.OutButton.setGeometry(QtCore.QRect(400, 145, 360, 50))
+        self.OutButton.setStyleSheet("QPushButton{\n"
+"border: 2px solid #8f8f91;\n"
+"border-radius: 10px;\n"
+"font-size: 15;\n"
+"font-weight: bold\n"
+"}\n"
+"")
+        self.OutButton.setObjectName("OutButton")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -300,9 +310,10 @@ class Ui_Form(object):
         self.arrow4.setText(_translate("Form", "→"))
         self.Draw.setText(_translate("Form", "DRAW RESULT"))
         self.Mainprocesslabel.setText(_translate("Form", "Main Process"))
-        self.Nextstepbutton.setText(_translate("Form", "NEXT STEP"))
         self.radio2.setText(_translate("Form", "real-time"))
-        self.radio1.setText(_translate("Form", "each process"))
+        self.radio1.setText(_translate("Form", "step by step"))
+        self.InButton.setText(_translate("Form", "IN MODE"))
+        self.OutButton.setText(_translate("Form", "OUT MODE"))
 
 
 if __name__ == "__main__":
