@@ -1,33 +1,37 @@
 import os, cv2, numpy as np
 import time
+from dotenv import load_dotenv
 
 from queue import Queue
 from PyQt6.QtCore import QThread, pyqtSignal, QMutex, QWaitCondition
+from mysql.connector import pooling,Error
 from ultralytics import YOLO
 
 from .face_align import align_face
 from db_code.faissdb import FaceDatabase
 
 import mysql
-import mysql.connector as conn
 
-db_config = {
-    "host": "localhost",
-    "user": "root",
-    "password": "Truong@1866",
-    "database": "face_recognition",
-    "charset": "utf8"
-}
+load_dotenv()
 
-connection_pool = mysql.connector.pooling.MySQLConnectionPool(
-    pool_name="mypool",
-    pool_size=5,
-    **db_config
-)
+try:
+    # Khởi tạo Connection Pool
+    db_pool = pooling.MySQLConnectionPool(
+        pool_name="my_pool",
+        pool_size=5, # Số lượng kết nối tối đa được giữ sẵn
+        pool_reset_session=True, # Tự động làm sạch dữ liệu cũ khi lấy kết nối ra
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
+    )
+    print("Khởi tạo Connection Pool thành công!")
+except Error as e:
+    print(f"Lỗi khi tạo Pool: {e}")
 
 def get_connection():
     # Lấy một kết nối có sẵn từ pool (Cực nhanh)
-    return connection_pool.get_connection()
+    return db_pool.get_connection()
 
 class CameraThread(QThread):
     notification = pyqtSignal(str)
